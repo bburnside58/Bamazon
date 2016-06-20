@@ -19,24 +19,45 @@ connection.query('SELECT * FROM Products', function(err, res){
 })
 
 
-//look into separating these 2 questions
+//
 var selectItem = function() {
     inquirer.prompt([{
         name: "ID",
         type: "input",
-        message: "Choose product ID",
+        message: "Choose product ID you would like",
     }]).then(function(answer) {
         var query = 'SELECT * FROM Products WHERE ?';
         connection.query(query, {ItemID: answer.ID}, function(err, res) {
-        	console.log(res);
-            // for (var i = 0; i < res.length; i++) {
-            // 	console.log("Hi");
-            //     // console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Artist: " + res[i].artist + " || Year: " + res[i].year);
-            // }
+        	if (res[0].StockQuantity == 0) {
+        		console.log("Insufficient quantity");
+        	} else {
+        		console.log(res);
+        		console.log(answer.ID);
+        		var itemChosen = answer.ID;
+        		selectQuantity(itemChosen);
+        	}
         })
     })
 };
 
+
+var selectQuantity = function(itemChosen) {
+    inquirer.prompt([{
+        name: "quantity",
+        type: "input",
+        message: "How many would you like?",
+    }]).then(function(answer) {
+    	console.log("this is " + itemChosen);
+        // var query = 'SELECT * FROM Products WHERE ItemID=?', itemChosen,;
+        connection.query('SELECT * FROM Products WHERE ItemID=?', itemChosen, function(err, res) {
+        	if (res[0].StockQuantity < answer.quantity) {
+        		console.log("Insufficient quantity");
+        	} else {
+        		console.log("yay me");
+        	}
+        })
+    })
+};
 /*
 , {
         name: "quantity",
