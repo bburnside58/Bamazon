@@ -1,0 +1,24 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Amazon-like storefront using Node.js, MySQL, the MySQL NPM Package, and the Prompt Package. The application will take in orders from customers and deplete from the store's total supplies.",
+  "main": "logic.js",
+  "dependencies": {
+    "inquirer": "^1.0.3",
+    "mysql": "^2.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bburnside58/Bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bburnside58/Bamazon/issues"
+  },
+  "homepage": "https://github.com/bburnside58/Bamazon#readme"
+}
